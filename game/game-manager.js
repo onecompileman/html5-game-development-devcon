@@ -1,11 +1,20 @@
 class GameManager {
-    
+
     constructor() {
-        this.player = new Player(createVector(0,height - 50), 3, 50, 50);
+        const playerPosition = createVector(width / 2, height - 50);
+        const playerSize = createVector(50,50);
+        this.player = new Player(playerPosition,3,playerSize);
     }
 
     render() {
-       this.player.update();
-       this.player.render(); 
+        this.playerRender();
     }
+
+
+
+    playerRender() {
+        this.player.update();
+        this.player.render();
+    }
+
 }
