@@ -5,11 +5,14 @@ class GameManager {
         const playerSize = createVector(50,50);
         this.player = new Player(playerPosition,3,playerSize);
         this.enemies = [new Enemy(createVector(50,50), 3, playerSize)]; 
+        this.bullets = [];
     }
 
     render() {
-        this.playerRender();
-        this.enemyRender();
+        this.enemiesRender();
+        this.fireBullet();
+        this.bulletsRender();
+        this.playerRender();        
     }
 
     playerRender() {
@@ -17,7 +20,25 @@ class GameManager {
         this.player.render();
     }
 
-    enemyRender() {
+    fireBullet() {
+        if (frameCount % 10 === 0) {
+            const playerPosition = this.player.position.copy();
+            playerPosition.y -= 20;
+            const bulletSize = createVector(10,10);
+            const bulletVelocity = createVector(0, -5);
+
+            this.bullets.push(new Bullet(playerPosition, bulletSize, bulletVelocity));
+        }
+    }
+
+    bulletsRender() {
+        this.bullets.forEach(bullet => {
+			bullet.update();
+			bullet.render();
+		});
+    }
+
+    enemiesRender() {
         this.enemies.forEach(enemy => {
             enemy.update();
             enemy.render();
