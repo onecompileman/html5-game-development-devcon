@@ -32,9 +32,10 @@ class GameManager {
     }
 
     bulletsRender() {
-        this.bullets.forEach(bullet => {
+        this.bullets = this.bullets.filter(bullet => {
 			bullet.update();
 			bullet.render();
+            return bullet.onEdge();
 		});
     }
 

@@ -17,4 +17,8 @@ class Bullet extends GameObject {
         this.position.add(this.velocity);
     }
 
+    onEdge() {
+        return 0 < this.position.y;
+    }
+
 }
